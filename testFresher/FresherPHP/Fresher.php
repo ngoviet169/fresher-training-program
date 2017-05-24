@@ -51,17 +51,8 @@
             ]
             );
 
-        // public $viettel = array(
-        //         '098', '097', '096', '0169', '0168', '0167', '0166', '0165', '0164', '0163', '0162'
-        //     );
-        // public $vinaphone = array(
-        //         '091', '094', '0123', '0124', '0125', '0127', '0129'
-        //     );
-        // public $mobiphone = array(
-        //         '090', '093', '0120', '0121', '0122', '0126', '0128'
-        //     );
-
         const Nam_HIEN_TAI = 2017;
+        //co the dung ham date('Y') de thay the
 
         //ham constructor
         public function __construct()
@@ -98,35 +89,48 @@
         //ham lay ten nha mang
         public function getTenNhaMang()
         {
+            $newArray = array(); //tao 1 mang moi va check nha mang cua tung nguoi roi luu vao mang nay
             foreach ($this->fresherPhp as $key => $value) {
                 $phone_number[] = substr($value['phone_number'], 0, 3);
                 $dauso = substr($value['phone_number'], 0, 3);
                 $is_Viettel = in_array($dauso, array('016', '098', '097', '096'));
-                $is_VinaPhone = in_array($dauso, array('091', '094', '012'));
+                $is_VinaPhone = in_array($dauso, array('091', '094'));
                 $is_MobiPhone = in_array($dauso, array('090', '093', '012'));
-                // var_dump($checkViettel);
+                if($is_Viettel)
+                {
+                    array_push($newArray, 'Viettel');
+                }
+                if($is_MobiPhone)
+                {
+                    array_push($newArray, 'Mobiphone');
+                }
+                if($is_VinaPhone)
+                {
+                    array_push($newArray, 'Vinaphone');
+                }
             }
-            if($is_Viettel)
-            {
-                echo 'Viettel';
-            }
-            if($is_MobiPhone)
-            {
-                echo 'Mobiphone';
-            }
-            if($is_VinaPhone)
-            {
-                echo 'Vinaphone';
-            }
+            return $newArray;
         }
     }
 
 $fresher = new FresherPhp();
+
 $result = $fresher->__construct();
+
+$choose = 1; //chon nguoi muon hien thi
+
 echo '<pre>';
+
 var_dump($result);
+
 $after_convert = $fresher->getFullName();
-echo $after_convert[0] . '<br>';
+
+echo $after_convert[$choose] . '<br>';
+
 $namsinh = $fresher->tinhTuoi();
-var_dump($namsinh[0]) . '<br>';
+
+var_dump($namsinh[$choose]) . '<br>';
+
 $tenNhaMang = $fresher->getTenNhaMang();
+
+print_r($tenNhaMang[$choose]);
