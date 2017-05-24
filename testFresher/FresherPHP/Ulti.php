@@ -40,7 +40,7 @@
                 'first_name' => 'hai',
                 'last_name' => 'do',
                 'middle_name' => 'minh',
-                'birth_day' => '16-09-199',
+                'birth_day' => '16-09-1998',
                 'phone_number' => '0125850441',
             ],[
                 'first_name' => 'thang',
@@ -66,7 +66,7 @@
         //ham constructor
         public function __construct()
         {
-            return $this->fresherPhp[0];
+            return $this->fresherPhp;
         }
 
        
@@ -77,11 +77,13 @@
                 $tuoi[] = self::Nam_HIEN_TAI - (int)substr($value['birth_day'], -4, 4);
             }
             $max = $tuoi[0];
+            //echo $tuoi[0];
             for($i = 0; $i < count($tuoi); $i++)
             {
                 if($max < $tuoi[$i])
                 {
                     $max = $tuoi[$i];
+                    // var_dump($max);
                 }
             }
             return $max;
@@ -99,6 +101,7 @@
                 if($min > $tuoi[$i])
                 {
                     $min = $tuoi[$i];
+                    // echo $min . "<br>";
                 }
             }
             return $min;
@@ -111,6 +114,6 @@ $result = $fresher->__construct();
 echo '<pre>';
 var_dump($result);
 $min = $fresher->timMin();
-echo $min . '<br>';
+echo 'min: ' . $min . '<br>';
 $max = $fresher->timMax();
-echo $max;
+echo 'max: ' . $max;
