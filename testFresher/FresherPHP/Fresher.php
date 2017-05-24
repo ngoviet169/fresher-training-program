@@ -91,7 +91,6 @@
         {
             $newArray = array(); //tao 1 mang moi va check nha mang cua tung nguoi roi luu vao mang nay
             foreach ($this->fresherPhp as $key => $value) {
-                $phone_number[] = substr($value['phone_number'], 0, 3);
                 $dauso = substr($value['phone_number'], 0, 3);
                 $is_Viettel = in_array($dauso, array('016', '098', '097', '096'));
                 $is_VinaPhone = in_array($dauso, array('091', '094'));

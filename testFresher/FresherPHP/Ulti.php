@@ -51,16 +51,6 @@
             ]
             );
 
-        public $viettel = array(
-                '098', '097', '096', '0169', '0168', '0167', '0166', '0165', '0164', '0163', '0162'
-            );
-        public $vinaphone = array(
-                '091', '094', '0123', '0124', '0125', '0127', '0129'
-            );
-        public $mobiphone = array(
-                '090', '093', '0120', '0121', '0122', '0126', '0128'
-            );
-
         const Nam_HIEN_TAI = 2017;
 
         //ham constructor
@@ -107,13 +97,41 @@
             return $min;
         }
 
+        public function phan_loai_hoc_vien_theo_sdt()
+        {
+            $phanloai['Viettel'] = 0;
+            $phanloai['Mobiphone'] = 0;
+            $phanloai['Vinaphone'] = 0;
+            foreach ($this->fresherPhp as $key => $value) {
+                $dauso = substr($value['phone_number'], 0, 3);
+                $is_Viettel = in_array($dauso, array('016', '098', '097', '096'));
+                $is_VinaPhone = in_array($dauso, array('091', '094'));
+                $is_MobiPhone = in_array($dauso, array('090', '093', '012'));
+                if($is_Viettel)
+                {
+                    $phanloai['Viettel'] = $phanloai['Viettel'] + 1;
+                }
+                if($is_MobiPhone)
+                {
+                    $phanloai['Mobiphone'] = $phanloai['Mobiphone'] + 1;
+                }
+                if($is_VinaPhone)
+                {
+                    $phanloai['Vinaphone'] = $phanloai['Vinaphone'] + 1;
+                }
+            }
+            return $phanloai;
+        }
+
     }
 
 $fresher = new FresherPhp();
 $result = $fresher->__construct();
 echo '<pre>';
-var_dump($result);
+// var_dump($result);
 $min = $fresher->timMin();
 echo 'min: ' . $min . '<br>';
 $max = $fresher->timMax();
-echo 'max: ' . $max;
+echo 'max: ' . $max . "<br>";
+$phanloai = $fresher->phan_loai_hoc_vien_theo_sdt();
+print_r($phanloai);
