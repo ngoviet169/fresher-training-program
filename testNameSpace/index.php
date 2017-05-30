@@ -31,7 +31,15 @@ echo "Chieu dai canh hinh vuong: " . $hinhvuong->getCanh() . "<br>";
 echo "Chu vi hinh vuong: " . $hinhvuong->getChuVi() . "<br>";
 echo "Dien tich hinh vuong: " . $hinhvuong->getDienTich() . "<br>";
 
-$sdt = new SoDienThoai( '0168123123');
+$input = '';
+if(isset($_POST['submit']))
+{
+    $input = $_POST['input'];
+}
+
+echo 'Bạn vừa nhập: ' . $input . "<br>";
+
+$sdt = new SoDienThoai( $input);
 
 try
 {
@@ -40,6 +48,12 @@ try
 catch (Exception $e)
 {
     echo $e->getMessage() . "<br>";
-    echo $e->getLine() . "<br>";
+    echo "dòng: " . $e->getLine() . "<br>";
     echo $e->getFile() . "<br>";
 }
+?>
+
+<form method="post">
+    <input type="text" name="input">
+    <input type="submit" name="submit" value="check">
+</form>
