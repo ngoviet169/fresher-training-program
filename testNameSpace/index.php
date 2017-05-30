@@ -31,7 +31,7 @@ echo "Chieu dai canh hinh vuong: " . $hinhvuong->getCanh() . "<br>";
 echo "Chu vi hinh vuong: " . $hinhvuong->getChuVi() . "<br>";
 echo "Dien tich hinh vuong: " . $hinhvuong->getDienTich() . "<br>";
 
-$sdt = new SoDienThoai( '0989850441');
+$sdt = new SoDienThoai( '0168123123');
 
 try
 {

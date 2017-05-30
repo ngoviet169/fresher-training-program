@@ -62,9 +62,19 @@ class SoDienThoai
         }
 
         //kiem tra xem so dien thoai co qua dai khong.
-        if(strlen($this->sdt) > 11 || strlen($this->sdt) < 10)
+        if($str2 == '09')
         {
-            throw new Exception("so dien thoai khong duoc lon hon 11 so hoac nho hon 10 so");
+            if(strlen($this->sdt) != 10)
+            {
+                throw new Exception("Đầu 09 thì sdt phải là 10 số");
+            }
+        }
+        if($str2 == '01')
+        {
+            if(strlen($this->sdt) != 11)
+            {
+                throw new Exception("Đầu 01 thì sdt phải là 11 số");
+            }
         }
         echo 'so dien thoai hop le.';
     }
